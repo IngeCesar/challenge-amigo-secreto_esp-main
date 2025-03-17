@@ -59,7 +59,24 @@ function enseñarAmigosPantalla(){
     for (let i = 0; i < amigos.length; i++) {
         let item = document.createElement('li');
         item.textContent = amigos[i];
-        listaNombres.appendChild(item);
+        //Agregar evento de click para eliminar un amigo
+        item.addEventListener('click', function() {
+            eliminarAmigo(i); //llama a la funcion para eliminar un amigo
+        });
+        listaNombres.appendChild(item); //agrega el nombre a la lista
+    }
+}
+
+//funcion para eliminar un amigo de la lista
+function eliminarAmigo(j) {
+    let confimarEliminar = confirm(`¿Estás seguro de eliminar a ${amigos[j]}?`);
+    if (confimarEliminar) {
+        amigos.splice(j, 1); //Elimina el amigo de la lista
+        enseñarAmigosPantalla(); //actualiza la lista de amigos en pantalla
+        return;
+    }
+    else {
+        return;
     }
 }
 
